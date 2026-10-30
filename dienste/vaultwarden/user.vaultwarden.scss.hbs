@@ -24,6 +24,10 @@ $petrol-tief:#0b2230;
    im dunklen Modus in brand-400 mit dunkler Schrift. Mit der Cyan-Skala ist
    beides gut lesbar (cyan-700/weiß 5,4:1, cyan-400/dunkel 9:1). */
 :root {
+  /* Canva-Hintergrund einmal als Variable – spart doppelte Einbettung */
+  --icf-bg-desktop: #{$bg-desktop};
+  --icf-bg-handy: #{$bg-handy};
+
   --color-brand-050: #ecfeff;
   --color-brand-100: #cffafe;
   --color-brand-200: #a5f3fc;
@@ -86,10 +90,10 @@ app-root img.new-logo-themed { content: $favicon !important; max-width: 4rem !im
 /* ---------- 3. Anmeldeseiten ---------- */
 /* Canva-Hintergrund hinter allen Anmelde-/SSO-Seiten */
 body:has(auth-anon-layout) {
-  background: $petrol $bg-desktop no-repeat center / cover fixed !important;
+  background: $petrol var(--icf-bg-desktop) no-repeat center / cover fixed !important;
 }
 @media (max-aspect-ratio: 3/4) {
-  body:has(auth-anon-layout) { background-image: $bg-handy !important; }
+  body:has(auth-anon-layout) { background-image: var(--icf-bg-handy) !important; }
 }
 /* Die Flächen der Anmeldeseite durchsichtig, damit das Bild sichtbar wird */
 auth-anon-layout .tw-bg-background-alt {
@@ -134,7 +138,19 @@ auth-anon-layout bit-landing-header {
   }
 }
 
-/* ---------- 4. Seitenleiste im Tresor ---------- */
+/* ---------- 4. Tresor: Canva-Hintergrund hinter dem Inhalt (dunkler Modus) ----------
+   Das Bild liegt leicht abgedunkelt auf der Inhaltsfläche. Innerhalb dieser Fläche
+   wird die Flächenfarbe halbtransparent, damit es durch Tabelle und Filter scheint.
+   Dialoge und Menüs liegen außerhalb von #main-content und bleiben deckend. */
+.theme_dark #main-content {
+  background:
+    linear-gradient(rgba(11, 34, 48, 0.45), rgba(11, 34, 48, 0.45)),
+    var(--icf-bg-desktop) no-repeat center / cover fixed,
+    #{$petrol-tief} !important;
+  --color-bg-primary: rgba(11, 34, 48, 0.72);
+}
+
+/* ---------- 5. Seitenleiste im Tresor ---------- */
 bit-nav-logo {
   bit-svg {
     > svg { @include hide; }
