@@ -24,7 +24,8 @@ status-website:
   cname: status.icf-essen.de
   name: ICF Essen – Dienststatus
   logoUrl: https://icf.church/wp-content/themes/icf/assets/logo.svg
-  theme: dark            # Alternativen: dark, night, ocean
+  # Eigenes Corporate Design (assets/icf-theme.css, aus Canva „IT ICF Hintergrund“)
+  themeUrl: /icf-theme.css
   introTitle: "**Status der ICF-Dienste**"
   introMessage: "Hier ist jederzeit zu sehen, ob die Dienste des ICF-Essen erreichbar sind. Bei Problemen hilft der [Helpdesk](https://helpdesk.icf-essen.de)."
   navbar:

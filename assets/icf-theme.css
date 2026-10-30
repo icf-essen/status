@@ -1,0 +1,241 @@
+/*
+ * ICF Essen – IT-Team Corporate Design
+ * Theme für die Upptime-Statusseite (status.icf-essen.de)
+ *
+ * Quelle: Canva-Design „IT ICF Hintergrund Desktop“ (DAHYvoCfIxU)
+ * Die Farbwerte unter „Design-Tokens“ sind die Grundlage für alle Dienste
+ * (Authentik, Vaultwarden, Nextcloud, GLPI …). Next Step Rad ist ausgenommen.
+ *
+ * Schrift „Rubik Glitch“: SIL Open Font License, siehe fonts/OFL-Rubik-Glitch.txt.
+ * Wird lokal ausgeliefert – keine Anfragen an externe Font-Dienste.
+ */
+
+@font-face {
+  font-family: "ICF Glitch";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/rubik-glitch-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "ICF Glitch";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/rubik-glitch-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Design-Tokens ---------- */
+:root {
+  /* Hintergrund (aus dem Canva-Verlauf) */
+  --icf-base: #0b2230;        /* tiefste Fläche */
+  --icf-navy: #122735;        /* dunkle Ecken */
+  --icf-petrol: #0f4159;      /* Grundton Mitte */
+  --icf-glow-teal: #1a7286;   /* Lichtfleck oben links */
+  --icf-glow-blue: #114668;   /* Lichtfleck rechts */
+  --icf-ember: #2d1e21;       /* warmer Schimmer unten links */
+
+  /* Akzente */
+  --icf-cyan: #22d3ee;        /* „IT TEAM“-Schrift */
+  --icf-coral: #f84830;       /* Neon-Dino, Glitch-Versatz */
+  --icf-white: #ffffff;       /* Logo, Haupttext */
+
+  /* Statusfarben, auf die Palette abgestimmt */
+  --icf-up: #2dd4a7;
+  --icf-degraded: #f7b731;
+  --icf-down: var(--icf-coral);
+
+  --icf-surface: rgba(8, 28, 41, 0.62);
+  --icf-surface-border: rgba(34, 211, 238, 0.16);
+  --icf-radius: 0.6rem;
+
+  /* Upptime-Variablen */
+  --body-background-color: var(--icf-base);
+  --body-text-color: #e8f6fa;
+  --card-background-color: var(--icf-surface);
+  --card-border-color: var(--icf-surface-border);
+  --nav-background-color: rgba(8, 28, 41, 0.55);
+  --nav-border-bottom-color: var(--icf-surface-border);
+  --nav-current-border-bottom-color: var(--icf-cyan);
+  --down-border-left-color: var(--icf-down);
+  --down-background-color: rgba(248, 72, 48, 0.18);
+  --degraded-border-left-color: var(--icf-degraded);
+  --up-border-left-color: var(--icf-up);
+  --tag-color: var(--icf-base);
+  --tag-up-background-color: var(--icf-up);
+  --tag-down-background-color: var(--icf-down);
+  --tag-degraded-background-color: var(--icf-degraded);
+  --change-background-color: var(--icf-degraded);
+  --error-button-border-color: var(--icf-cyan);
+  --error-button-background-color: transparent;
+  --error-button-color: var(--icf-cyan);
+  --submit-button-border-color: var(--icf-cyan);
+  --submit-button-background-color: var(--icf-cyan);
+  --submit-button-color: var(--icf-base);
+  --code-color: var(--icf-cyan);
+  --code-background-color: rgba(34, 211, 238, 0.08);
+  /* Antwortzeit-Grafiken (mintgrün aus Upptime) in Richtung Cyan drehen und
+     zurücknehmen, damit der Text darüber lesbar bleibt */
+  --graph-opacity: 0.4;
+  --graph-filter: hue-rotate(22deg) saturate(1.6);
+}
+
+/* ---------- Hintergrund ---------- */
+/* Der Canva-Verlauf als CSS nachgebaut: scharf auf jeder Bildschirmgröße,
+   auch im Hochformat am Handy, und ohne Bilddatei. */
+html {
+  background-color: var(--icf-petrol);
+}
+html body {
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+}
+/* Der Verlauf liegt auf einer fixierten Ebene hinter dem Inhalt. So bleibt er
+   beim Scrollen stehen – auch auf iOS, wo background-attachment: fixed nicht greift. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 55% at 20% 28%, rgba(26, 114, 134, 0.95), transparent 70%),
+    radial-gradient(ellipse 40% 50% at 78% 38%, rgba(17, 70, 104, 0.95), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 55% 92%, rgba(13, 70, 93, 0.9), transparent 70%),
+    radial-gradient(ellipse 30% 30% at 0% 100%, rgba(84, 34, 34, 0.75), transparent 70%),
+    radial-gradient(ellipse 35% 40% at 100% 100%, rgba(9, 30, 44, 0.9), transparent 70%),
+    linear-gradient(160deg, var(--icf-petrol) 0%, #0e354a 55%, var(--icf-navy) 100%);
+}
+@media (max-aspect-ratio: 3/4) {
+  /* Hochformat wie im Handy-Hintergrund: Lichtflecken übereinander,
+     Blau oben rechts, Petrol unten rechts, warmer Schimmer unten links */
+  body::before {
+    background:
+      radial-gradient(ellipse 90% 30% at 70% 15%, rgba(17, 70, 104, 0.95), transparent 70%),
+      radial-gradient(ellipse 80% 28% at 10% 42%, rgba(15, 75, 92, 0.9), transparent 70%),
+      radial-gradient(ellipse 85% 30% at 75% 75%, rgba(26, 114, 134, 0.9), transparent 70%),
+      radial-gradient(ellipse 60% 20% at 0% 100%, rgba(84, 34, 34, 0.7), transparent 70%),
+      linear-gradient(180deg, var(--icf-navy) 0%, var(--icf-petrol) 45%, #0e354a 100%);
+  }
+}
+
+/* ---------- Navigation ---------- */
+html nav {
+  background: var(--nav-background-color);
+  border-bottom-color: var(--nav-border-bottom-color);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+nav .logo img {
+  border-radius: 0 !important;
+}
+nav .logo div {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+nav ul a:hover {
+  color: var(--icf-cyan);
+}
+
+/* ---------- Kopfbereich mit Glitch-Titel ---------- */
+main > header h1 {
+  font-family: "ICF Glitch", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--icf-cyan);
+  /* RGB-Versatz wie in der Canva-Vorlage */
+  text-shadow:
+    -0.04em 0 0 rgba(248, 72, 48, 0.85),
+    0.04em 0 0 rgba(255, 255, 255, 0.35);
+  margin: 1rem 0 1.25rem;
+}
+main > header h1 strong {
+  font-weight: 400;
+}
+main > header .lead {
+  opacity: 0.85;
+}
+
+/* ---------- Karten & Inhalte ---------- */
+html article {
+  border-radius: var(--icf-radius);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+html article + article {
+  margin-top: 0.6rem;
+}
+h2,
+h3 {
+  letter-spacing: 0.02em;
+}
+html .tag {
+  border-radius: 999px;
+  font-weight: 600;
+}
+a {
+  text-underline-offset: 0.18em;
+}
+main a:not(.error-button):hover {
+  color: var(--icf-cyan);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --graph-opacity: 0.22;
+  }
+}
+
+/* Antwortzeit-Grafik: Upptime setzt sie als Hintergrundbild direkt auf die Karte
+   (--background). Sie wird hier auf eine eigene Ebene gelegt, damit sie sich
+   einfärben und abschwächen lässt, ohne den Text zu beeinflussen. */
+html article.graph {
+  background-image: none !important;
+  isolation: isolate;
+}
+html article.graph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: var(--background) no-repeat center right / contain;
+  opacity: var(--graph-opacity);
+  filter: var(--graph-filter);
+}
+
+/* Zeitraum-Umschalter (24h / 7d / …) */
+html input[type="radio"] + label {
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem !important;
+  margin: 0 0.1rem;
+}
+input[type="radio"]:checked + label {
+  background: var(--icf-cyan) !important;
+  color: var(--icf-base) !important;
+}
+
+/* Fokus sichtbar für Tastaturbedienung */
+a:focus-visible,
+input:focus-visible + label {
+  outline: 2px solid var(--icf-cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  html nav,
+  html article {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #0b2a3a;
+  }
+}
