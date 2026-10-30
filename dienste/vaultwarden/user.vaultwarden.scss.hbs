@@ -138,19 +138,7 @@ auth-anon-layout bit-landing-header {
   }
 }
 
-/* ---------- 4. Tresor: Canva-Hintergrund hinter dem Inhalt (dunkler Modus) ----------
-   Das Bild liegt leicht abgedunkelt auf der Inhaltsfläche. Innerhalb dieser Fläche
-   wird die Flächenfarbe halbtransparent, damit es durch Tabelle und Filter scheint.
-   Dialoge und Menüs liegen außerhalb von #main-content und bleiben deckend. */
-.theme_dark #main-content {
-  background:
-    linear-gradient(rgba(11, 34, 48, 0.45), rgba(11, 34, 48, 0.45)),
-    var(--icf-bg-desktop) no-repeat center / cover fixed,
-    #{$petrol-tief} !important;
-  --color-bg-primary: rgba(11, 34, 48, 0.72);
-}
-
-/* ---------- 5. Seitenleiste im Tresor ---------- */
+/* ---------- 4. Seitenleiste im Tresor ---------- */
 bit-nav-logo {
   bit-svg {
     > svg { @include hide; }
