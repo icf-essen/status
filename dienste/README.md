@@ -6,6 +6,7 @@ Dieser Ordner wird **nicht** ausgeliefert (im Gegensatz zu `design/`).
 | Datei | Wo eingetragen |
 |---|---|
 | `authentik/brand.css` | Authentik → System → Brands → Custom CSS |
+| `grafana/icf-leitstand.json` | VM 104: Provisioning-Ordner der Dashboards (ersetzt die bisherige Datei) |
 | `glpi/icf.scss` | VM 105: `/var/lib/glpi/files/_themes/` → Einrichtung → Allgemein → Standardwerte → Farbpalette „ICF Essen“ |
 | `vaultwarden/user.vaultwarden.scss.hbs` | VM 102: `/opt/vaultwarden/vw-data/templates/scss/` (Container: `/data/templates/scss/`) |
 
