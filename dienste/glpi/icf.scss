@@ -1,0 +1,108 @@
+/* theme-name: ICF Essen */
+/*
+ * ICF Essen – Farbpalette für GLPI 11
+ * Ablage: <GLPI_VAR_DIR>/_themes/icf.scss  (bei uns: /var/lib/glpi/files/_themes/icf.scss)
+ * Danach unter Einrichtung → Allgemein → Standardwerte als Farbpalette „ICF Essen“ wählen.
+ * Aufbau wie die mitgelieferten dunklen Paletten (css/palettes/_auror_dark.scss).
+ */
+$is-dark: true;
+
+:root[data-glpi-theme="icf"] {
+    /* Flächen (aus dem Canva-Verlauf) */
+    --tblr-dark: #0b2230;
+    --tblr-light: #b9d3dc;
+    --tblr-body-bg: #0b2230;
+    --tblr-bg-surface: #12313f;
+    --tblr-body-color: #d5e6ec;
+
+    /* Primärfarbe Cyan – auf Cyan immer dunkle Schrift */
+    --tblr-primary-rgb: 34, 211, 238; // #22d3ee
+    --tblr-primary-fg: #0b2230;
+    --tblr-secondary: #9cc3cf;
+    --tblr-secondary-fg: #0b2230;
+    --tblr-link-color-rgb: 34, 211, 238;
+    --tblr-link-hover-color-rgb: 103, 227, 245;
+    --tblr-code-color: #a5f3fc;
+    --tblr-muted: #8fb0bc;
+    --tblr-muted-rgb: 143, 176, 188;
+    --tblr-badge-bg: var(--tblr-light);
+    --tblr-badge-color: var(--tblr-dark);
+
+    /* Hauptmenü in ICF-Petrol */
+    --glpi-mainmenu-bg: #0f4159;
+    --glpi-mainmenu-fg: #ffffffcc;
+
+    /* Formulare, Reiter, Tickets */
+    --glpi-form-header-fg: #22d3ee;
+    --glpi-form-header-border-color: transparent;
+    --glpi-tabs-bg: #0e2a38;
+    --glpi-tabs-fg: var(--tblr-light);
+    --glpi-tabs-border-color: transparent;
+    --glpi-tabs-active-bg: #1d4354;
+    --glpi-tabs-active-fg: #e8f6fa;
+    --glpi-tabs-active-border-color: transparent;
+    --glpi-itil-secondary-bg: #0e2a38;
+
+    /* Ticket-Timeline: GLPIs Farbcode bleibt (Inhalt grün, Aufgabe gelb,
+       Lösung blau/cyan, Dokument türkis) – nur die Flächen in Petrol getönt */
+    --glpi-timeline-itil-content-bg: #123a3fd9;
+    --glpi-timeline-itil-content-fg: #8fdcb0;
+    --glpi-timeline-itil-content-border-color: #1f5148;
+    --glpi-timeline-fup-bg: #12313f;
+    --glpi-timeline-fup-fg: #a9c6d0;
+    --glpi-timeline-fup-border-color: #1d4354;
+    --glpi-timeline-task-bg: #f7b7311a;
+    --glpi-timeline-task-fg: #f2d08a;
+    --glpi-timeline-task-border-color: #4a4126;
+    --glpi-timeline-solution-bg: #164e63;
+    --glpi-timeline-solution-fg: #a5f3fc;
+    --glpi-timeline-solution-border-color: #1d6680;
+    --glpi-timeline-document-bg: #123b35;
+    --glpi-timeline-document-fg: #6fd3b0;
+    --glpi-timeline-document-border-color: #1f5148;
+
+    /* Helpdesk-Startseite (Self-Service) */
+    --glpi-helpdesk-header: #0f4159;
+    --glpi-helpdesk-tiles-section-bg: #12313f;
+    --glpi-helpdesk-tabs-section-bg: #0b2230;
+    --glpi-illustrations-header-light: #0b2230;
+    --glpi-illustrations-gradient-1: hsl(193deg, 60%, 70%);
+    --glpi-illustrations-gradient-2: hsl(193deg, 60%, 40%);
+    --glpi-illustrations-gradient-3: hsl(193deg, 60%, 20%);
+
+    /* ICF-Logos statt GLPI (Menü, eingeklapptes Menü, Anmeldeseite) – von design.icf-essen.de */
+    --glpi-logo-light: url("https://design.icf-essen.de/icf-logo-weiss.svg");
+    --glpi-logo-light-reduced: url("https://design.icf-essen.de/icf-favicon.svg");
+    --glpi-logo-light-login: url("https://design.icf-essen.de/icf-logo-weiss.svg");
+    --glpi-logo: var(--glpi-logo-light);
+    --glpi-logo-reduced: var(--glpi-logo-light-reduced);
+
+    /* Farbvorschau in der Palettenauswahl */
+    --glpi-palette-color-1: #0f4159;
+    --glpi-palette-color-2: #0b2230;
+    --glpi-palette-color-3: #22d3ee;
+    --glpi-palette-color-4: #f84830;
+}
+
+/* Anmeldeseite: Canva-Hintergrund und Glas-Karte wie bei Authentik */
+:root[data-glpi-theme="icf"] body.welcome-anonymous {
+    background: #0f4159 url("https://design.icf-essen.de/hintergrund-desktop.jpg") no-repeat center / cover fixed;
+
+    @media (max-aspect-ratio: 3/4) {
+        background-image: url("https://design.icf-essen.de/hintergrund-handy.jpg");
+    }
+
+    .main-content-card {
+        background: rgba(8, 28, 41, 0.6);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(34, 211, 238, 0.16);
+        border-radius: 1rem;
+    }
+
+    .glpi-logo {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
