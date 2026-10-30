@@ -1,0 +1,51 @@
+/*
+ * ICF Essen – IT-Team Corporate Design: gemeinsame Grundlage für alle Dienste
+ * Ausgeliefert von https://design.icf-essen.de/icf-design.css
+ * Einbinden:  @import url("https://design.icf-essen.de/icf-design.css");
+ * Quelle: Canva „IT ICF Hintergrund“ (Desktop/Handy), Repo icf-essen/status, Ordner design/
+ */
+
+/* Glitch-Schrift wie „IT TEAM“ in der Vorlage (SIL Open Font License, fonts/OFL-Rubik-Glitch.txt) */
+@font-face {
+  font-family: "ICF Glitch";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://design.icf-essen.de/fonts/rubik-glitch-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "ICF Glitch";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://design.icf-essen.de/fonts/rubik-glitch-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* Flächen (aus dem Canva-Verlauf) */
+  --icf-base: #0b2230;
+  --icf-navy: #122735;
+  --icf-petrol: #0f4159;
+
+  /* Akzente */
+  --icf-cyan: #22d3ee;        /* Primärfarbe – auf Cyan immer dunkle Schrift (--icf-base) */
+  --icf-cyan-hell: #67e3f5;   /* Hover */
+  --icf-coral: #f84830;       /* Fehler, Störung */
+  --icf-amber: #f7b731;       /* Warnung, eingeschränkt */
+  --icf-gruen: #2dd4a7;       /* OK, erreichbar */
+  --icf-text: #e8f6fa;
+
+  /* Karten */
+  --icf-surface: rgba(8, 28, 41, 0.62);
+  --icf-surface-border: rgba(34, 211, 238, 0.16);
+  --icf-radius: 0.6rem;
+
+  /* Dateien */
+  --icf-bg-desktop: url("https://design.icf-essen.de/hintergrund-desktop.jpg");
+  --icf-bg-handy: url("https://design.icf-essen.de/hintergrund-handy.jpg");
+  --icf-logo: url("https://design.icf-essen.de/icf-logo-weiss.svg");
+}
