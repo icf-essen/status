@@ -28,6 +28,8 @@ status-website:
   favicon: https://status.icf-essen.de/icf-favicon-512.png
   # Eigenes Corporate Design (assets/icf-theme.css, aus Canva „IT ICF Hintergrund“)
   themeUrl: https://status.icf-essen.de/icf-theme.css
+  # Lese-Proxy zur GitHub-API (Cloudflare Worker, Code in proxy/status-api.js)
+  apiBaseUrl: https://status-api.icf-essen.de
   introTitle: "**Status der ICF-Dienste**"
   introMessage: "Hier ist jederzeit zu sehen, ob die Dienste des ICF-Essen erreichbar sind. Bei Problemen hilft der [Helpdesk](https://helpdesk.icf-essen.de)."
   navbar:
