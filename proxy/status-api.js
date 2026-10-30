@@ -29,20 +29,24 @@ const CACHE_SECONDS = 60;
 //   /repos/icf-essen/status/commits              (Antwortzeit-Grafik)
 const ALLOWED_PATH = /^\/repos\/icf-essen\/status\/(issues(\/\d+(\/comments)?)?|commits)$/;
 
-function corsHeaders() {
+function corsHeaders(request) {
+  // Die Statusseite (Octokit) schickt eigene Header mit, u. a. user-agent.
+  // Der Browser fragt vorab, ob diese erlaubt sind – wir bestätigen genau die
+  // angefragten. Unbedenklich, weil ohnehin nur lesende Abfragen durchgehen.
+  const requested = request && request.headers.get("Access-Control-Request-Headers");
   return {
     "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
     "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
-    "Access-Control-Allow-Headers": "accept, content-type, x-github-api-version",
+    "Access-Control-Allow-Headers": requested || "accept, content-type, user-agent, x-github-api-version",
     "Access-Control-Max-Age": "86400",
-    Vary: "Origin",
+    Vary: "Origin, Access-Control-Request-Headers",
   };
 }
 
-function reply(status, message) {
+function reply(request, status, message) {
   return new Response(JSON.stringify({ message }), {
     status,
-    headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders() },
+    headers: { "Content-Type": "application/json; charset=utf-8", ...corsHeaders(request) },
   });
 }
 
@@ -59,15 +63,15 @@ async function askGitHub(url, token) {
 export default {
   async fetch(request, env, ctx) {
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders() });
+      return new Response(null, { status: 204, headers: corsHeaders(request) });
     }
     if (request.method !== "GET" && request.method !== "HEAD") {
-      return reply(405, "Nur lesender Zugriff erlaubt.");
+      return reply(request, 405, "Nur lesender Zugriff erlaubt.");
     }
 
     const incoming = new URL(request.url);
     if (!ALLOWED_PATH.test(incoming.pathname)) {
-      return reply(404, "Dieser Pfad wird nicht weitergeleitet.");
+      return reply(request, 404, "Dieser Pfad wird nicht weitergeleitet.");
     }
 
     const upstreamUrl = UPSTREAM + incoming.pathname + incoming.search;
@@ -88,7 +92,7 @@ export default {
     const headers = new Headers({
       "Content-Type": upstream.headers.get("Content-Type") || "application/json; charset=utf-8",
       "Cache-Control": `public, max-age=${CACHE_SECONDS}`,
-      ...corsHeaders(),
+      ...corsHeaders(request),
     });
     // Octokit wertet den Link-Header für Seitenumbrüche aus
     const link = upstream.headers.get("Link");
