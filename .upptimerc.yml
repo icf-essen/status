@@ -52,3 +52,47 @@ i18n:
   incidentBack: ← Zurück zur Übersicht
   loading: Wird geladen …
   footer: Statusseite der ICF Essen · betrieben mit [Upptime](https://upptime.js.org)
+  incidentReport: "Störung #$NUMBER – Bericht →"
+  activeIncidentSummary: "Begonnen am $DATE · $POSTS Beiträge"
+  incidentTitle: "Störung $NUMBER – Details"
+  incidentDetails: Details zur Störung
+  incidentViewOnGitHub: Auf GitHub ansehen und abonnieren
+  incidentCommentSummary: "Veröffentlicht am $DATE von $AUTHOR"
+  pastIncidentsResolved: "Behoben nach $MINUTES Minuten · $POSTS Beiträge"
+  up: Erreichbar
+  down: Gestört
+  degraded: Eingeschränkt
+  ms: ms
+  navGitHub: GitHub
+  rateLimitExceededTitle: Zu viele Anfragen
+  rateLimitExceededIntro: "Die Statusdaten konnten gerade nicht abgerufen werden, weil zu viele Anfragen gestellt wurden. In einigen Minuten funktioniert die Seite wieder."
+  rateLimitExceededWhatDoesErrorMean: Was bedeutet das?
+  rateLimitExceededErrorMeaning: "Die Statusseite lädt ihre Daten über die GitHub-API. GitHub begrenzt die Zahl der Abfragen pro Stunde."
+  rateLimitExceededErrorHowCanFix: Was hilft?
+  rateLimitExceededErrorFix: "Einfach etwas später erneut versuchen. Wer ein eigenes GitHub-Konto hat, kann alternativ einen persönlichen Zugriffstoken hinterlegen."
+  rateLimitExceededGeneratePAT: So wird ein persönlicher Zugriffstoken erstellt
+  rateLimitExceededHasSet: Ein persönlicher Zugriffstoken ist hinterlegt.
+  rateLimitExceededRemoveToken: Token entfernen
+  rateLimitExceededGitHubPAT: Persönlicher GitHub-Zugriffstoken
+  rateLimitExceededCopyPastePAT: Token hier einfügen
+  rateLimitExceededSaveToken: Token speichern
+  errorTitle: Ein Fehler ist aufgetreten
+  errorIntro: Der aktuelle Status konnte nicht geladen werden.
+  errorText: Bitte in wenigen Augenblicken erneut versuchen. Bei anhaltenden Problemen hilft der Helpdesk.
+  errorHome: Zur Startseite
+  pastScheduledMaintenance: Vergangene Wartungen
+  scheduledMaintenance: Geplante Wartung
+  scheduledMaintenanceSummaryStarted: "Begonnen am $DATE · Dauer $DURATION Minuten"
+  scheduledMaintenanceSummaryStarts: "Beginnt am $DATE · Dauer $DURATION Minuten"
+  startedAt: Begonnen am
+  startsAt: Beginnt am
+  duration: Dauer
+  durationMin: "$DURATION Minuten"
+  incidentCompleted: Abgeschlossen
+  incidentScheduled: Geplant
+  duration24H: 24 Std.
+  duration7D: 7 Tage
+  duration30D: 30 Tage
+  duration1Y: 1 Jahr
+  durationAll: Gesamt
+  locale: de-DE
