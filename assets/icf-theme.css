@@ -31,7 +31,7 @@
 
 /* ---------- Design-Tokens ---------- */
 :root {
-  /* Hintergrund (aus dem Canva-Verlauf) */
+  /* Hintergrundtöne (aus dem Canva-Verlauf gemessen) */
   --icf-base: #0b2230;        /* tiefste Fläche */
   --icf-navy: #122735;        /* dunkle Ecken */
   --icf-petrol: #0f4159;      /* Grundton Mitte */
@@ -95,32 +95,34 @@ html body {
   background: transparent;
   position: relative;
 }
-/* Der Verlauf liegt auf einer fixierten Ebene hinter dem Inhalt. So bleibt er
-   beim Scrollen stehen – auch auf iOS, wo background-attachment: fixed nicht greift. */
+/* Hintergrund: Originalbilder aus Canva („IT ICF Hintergrund Desktop“ Seite 4,
+   „IT ICF Hintergrund Handy“ Seite 5). Sie liegen auf einer fixierten Ebene hinter
+   dem Inhalt und bleiben beim Scrollen stehen – auch auf iOS, wo
+   background-attachment: fixed nicht greift. WebP mit JPG als Rückfall. */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 45% 55% at 20% 28%, rgba(26, 114, 134, 0.95), transparent 70%),
-    radial-gradient(ellipse 40% 50% at 78% 38%, rgba(17, 70, 104, 0.95), transparent 70%),
-    radial-gradient(ellipse 45% 35% at 55% 92%, rgba(13, 70, 93, 0.9), transparent 70%),
-    radial-gradient(ellipse 30% 30% at 0% 100%, rgba(84, 34, 34, 0.75), transparent 70%),
-    radial-gradient(ellipse 35% 40% at 100% 100%, rgba(9, 30, 44, 0.9), transparent 70%),
-    linear-gradient(160deg, var(--icf-petrol) 0%, #0e354a 55%, var(--icf-navy) 100%);
+  background-color: var(--icf-petrol);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/hintergrund-desktop.jpg");
+  background-image: image-set(
+    url("/hintergrund-desktop.webp") type("image/webp"),
+    url("/hintergrund-desktop.jpg") type("image/jpeg")
+  );
 }
 @media (max-aspect-ratio: 3/4) {
-  /* Hochformat wie im Handy-Hintergrund: Lichtflecken übereinander,
-     Blau oben rechts, Petrol unten rechts, warmer Schimmer unten links */
+  /* Hochformat (Handy): eigenes Motiv aus dem Handy-Design */
   body::before {
-    background:
-      radial-gradient(ellipse 90% 30% at 70% 15%, rgba(17, 70, 104, 0.95), transparent 70%),
-      radial-gradient(ellipse 80% 28% at 10% 42%, rgba(15, 75, 92, 0.9), transparent 70%),
-      radial-gradient(ellipse 85% 30% at 75% 75%, rgba(26, 114, 134, 0.9), transparent 70%),
-      radial-gradient(ellipse 60% 20% at 0% 100%, rgba(84, 34, 34, 0.7), transparent 70%),
-      linear-gradient(180deg, var(--icf-navy) 0%, var(--icf-petrol) 45%, #0e354a 100%);
+    background-image: url("/hintergrund-handy.jpg");
+    background-image: image-set(
+      url("/hintergrund-handy.webp") type("image/webp"),
+      url("/hintergrund-handy.jpg") type("image/jpeg")
+    );
   }
 }
 
