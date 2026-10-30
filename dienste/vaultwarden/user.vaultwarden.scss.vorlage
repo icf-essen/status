@@ -1,0 +1,142 @@
+/*
+ * ICF Essen – Corporate Design für Vaultwarden
+ * Datei: /opt/vaultwarden/vw-data/templates/scss/user.vaultwarden.scss.hbs  (im Container: /data/templates/scss/)
+ * Geprüft mit Vaultwarden 1.37.4 / Web-Vault v2026.7.0
+ *
+ * Sicherheitsnetz: Lässt sich diese Datei nicht übersetzen, nutzt Vaultwarden
+ * automatisch sein Standard-Design (siehe Log: „Compiling the Vaultwarden SCSS styles failed“).
+ */
+
+/* Bilder sind eingebettet: Vaultwardens Sicherheitsrichtlinie (CSP) erlaubt Bilder nur
+   von der eigenen Domain oder als data:-URI – Links auf design.icf-essen.de würden blockiert.
+   Quelle: Repo icf-essen/status, Ordner design/ (Datei wird mit dienste/vaultwarden/erzeugen.py aus der Vorlage erzeugt) */
+$logo-weiss: @@icf-logo-weiss.svg@@;
+$favicon:    @@icf-favicon.svg@@;
+$bg-desktop: @@hintergrund-desktop.webp@@;
+$bg-handy:   @@hintergrund-handy.webp@@;
+$petrol:     #0f4159;
+$petrol-tief:#0b2230;
+
+@mixin hide { display: none !important; }
+
+/* ---------- 1. Farben: Bitwarden-Blau → ICF-Cyan ----------
+   Bitwarden zeigt im hellen Modus Buttons in brand-700 mit weißer Schrift,
+   im dunklen Modus in brand-400 mit dunkler Schrift. Mit der Cyan-Skala ist
+   beides gut lesbar (cyan-700/weiß 5,4:1, cyan-400/dunkel 9:1). */
+:root {
+  --color-brand-050: #ecfeff;
+  --color-brand-100: #cffafe;
+  --color-brand-200: #a5f3fc;
+  --color-brand-300: #67e8f9;
+  --color-brand-400: #22d3ee;
+  --color-brand-500: #06b6d4;
+  --color-brand-600: #0891b2;
+  --color-brand-700: #0e7490;
+  --color-brand-800: #155e75;
+  --color-brand-900: #164e63;
+  --color-brand-950: #083344;
+  --color-brand-950-rgb: 8, 51, 68;
+
+  /* ältere Bestandteile der Oberfläche (RGB-Tripel) */
+  --color-primary-100: 207 250 254;
+  --color-primary-300: 103 232 249;
+  --color-primary-600: 14 116 144;
+  --color-primary-700: 21 94 117;
+  --color-background-alt2: 14 116 144;
+  --color-background-alt3: 21 94 117;
+  --color-background-alt4: 8 51 68;
+  --color-marketing-logo: 14 116 144;
+  --color-bw-blue: 14 116 144;
+  --color-illustration-logo: 14 116 144;
+  --color-illustration-outline: 8 51 68;
+  --color-illustration-bg-primary: 207 250 254;
+  --color-illustration-bg-secondary: 165 243 252;
+
+  /* Seitenleiste in ICF-Petrol */
+  --color-nav-bg-primary: #{$petrol};
+  --color-nav-bg-primary-strong: #{$petrol-tief};
+}
+
+.theme_dark {
+  --color-primary-100: 8 51 68;
+  --color-primary-300: 21 94 117;
+  --color-primary-600: 34 211 238;
+  --color-primary-700: 165 243 252;
+  --color-background-alt2: 21 94 117;
+  --color-background-alt3: 15 65 89;
+  --color-background-alt4: 11 34 48;
+  --color-nav-bg-primary: #{$petrol};
+  --color-nav-bg-primary-strong: #{$petrol-tief};
+}
+
+/* ---------- 2. Ladebildschirm ---------- */
+/* Heller Hintergrund → Favicon mit eigener Petrol-Fläche statt weißem Logo */
+app-root img.new-logo-themed { content: $favicon !important; max-width: 4rem !important; }
+
+/* ---------- 3. Anmeldeseiten ---------- */
+/* Canva-Hintergrund hinter allen Anmelde-/SSO-Seiten */
+body:has(auth-anon-layout) {
+  background: $petrol $bg-desktop no-repeat center / cover fixed !important;
+}
+@media (max-aspect-ratio: 3/4) {
+  body:has(auth-anon-layout) { background-image: $bg-handy !important; }
+}
+/* Die Flächen der Anmeldeseite durchsichtig, damit das Bild sichtbar wird */
+auth-anon-layout .tw-bg-background-alt {
+  background-color: transparent !important;
+}
+/* Texte außerhalb der Karte hell – auch im hellen Modus steht das Bild dahinter */
+auth-anon-layout bit-landing-hero h1,
+auth-anon-layout bit-landing-hero h2,
+auth-anon-layout bit-landing-hero p,
+auth-anon-layout footer,
+auth-anon-layout footer * {
+  color: #e8f6fa !important;
+}
+
+/* Am Handy entfernt Bitwarden die Kartenfläche um das Formular –
+   vor dem dunklen Bild wären die Beschriftungen dann unlesbar */
+@media (max-width: 639px) {
+  auth-anon-layout bit-landing-card bit-base-card {
+    background-color: rgb(var(--color-background)) !important;
+    border-radius: 0.75rem !important;
+    padding: 1.25rem !important;
+  }
+}
+
+/* Bitwarden-Illustrationen am unteren Rand ausblenden – vor dem Bild wirken sie fremd */
+bit-landing-layout > div > div.tw-hidden:has(> bit-svg) {
+  @include hide;
+}
+
+/* Weißes ICF-Logo oben statt Bitwarden-Schild */
+auth-anon-layout bit-landing-header {
+  bit-svg {
+    > svg { @include hide; }
+    &::before {
+      display: block !important;
+      content: "" !important;
+      width: 100% !important;
+      height: 48px !important;
+      background: $logo-weiss no-repeat center left !important;
+      background-size: contain !important;
+    }
+  }
+}
+
+/* ---------- 4. Seitenleiste im Tresor ---------- */
+bit-nav-logo {
+  bit-svg {
+    > svg { @include hide; }
+    &::before {
+      display: block !important;
+      content: "" !important;
+      width: 100% !important;
+      height: 42px !important;
+      background: $logo-weiss no-repeat center left !important;
+      background-size: auto 42px !important;
+    }
+  }
+}
+#bit-side-nav[style*="4.5rem"] bit-nav-logo bit-svg::before { display: none !important; }
+#bit-side-nav[style*="4.5rem"] bit-nav-logo bit-svg > svg { display: block !important; }
