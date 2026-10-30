@@ -15,6 +15,7 @@ aus dem Verzeichnis `/srv/icf-design`. Dieses Verzeichnis im Repo ist die Quelle
 | `hintergrund-handy.jpg` / `.webp` | Hintergrund Hochformat (Canva „IT ICF Hintergrund Handy“, Seite 5) |
 | `icf-design.css` | Farben als CSS-Variablen + Schrift „ICF Glitch“ |
 | `fonts/` | Rubik Glitch (SIL Open Font License) |
+| `vaultwarden/images/` | Favicon-Satz für vault.icf-essen.de – der Front-Caddy liefert ihn statt der Bitwarden-Dateien aus (gleiche Pfade wie im Web-Vault) |
 
 Farben: Primär Cyan `#22d3ee` (auf Cyan dunkle Schrift `#0b2230`), Hintergrund Petrol `#0f4159`.
 
