@@ -1,31 +1,22 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+owner: icf-essen
+repo: status
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Nextcloud
+    url: https://cloud.icf-essen.de/status.php
+  - name: Vaultwarden
+    url: https://vault.icf-essen.de/alive
+  - name: Anmeldung (Authentik)
+    url: https://auth.icf-essen.de/-/health/live/
+  - name: Helpdesk (GLPI)
+    url: https://helpdesk.icf-essen.de/status.php
+  - name: Next Step Rad
+    url: https://nextstep.icf-essen.de/next-step-rad/
+  - name: NetBox
+    url: https://netbox.icf-essen.de/healthz
+  - name: Grafana
+    url: https://grafana.icf-essen.de/healthz
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
-  navbar:
-    - title: Status
-      href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
-
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+  cname: status.icf-essen.de
+  name: ICF Essen – Dienststatus
