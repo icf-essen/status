@@ -12,7 +12,7 @@ sites:
   - name: Helpdesk (GLPI)
     url: https://helpdesk.icf-essen.de/status.php
   - name: Next Step Rad
-  url: https://nextstep.icf-essen.de/next-step-rad/api/health
+    url: https://nextstep.icf-essen.de/next-step-rad/api/health
   - name: NetBox
     url: https://netbox.icf-essen.de/healthz
     icon: https://github.com/netbox-community.png
