@@ -8,15 +8,44 @@ sites:
     url: https://vault.icf-essen.de/alive
   - name: Anmeldung (Authentik)
     url: https://auth.icf-essen.de/-/health/live/
+    icon: https://github.com/goauthentik.png
   - name: Helpdesk (GLPI)
     url: https://helpdesk.icf-essen.de/status.php
   - name: Next Step Rad
     url: https://nextstep.icf-essen.de/next-step-rad/
   - name: NetBox
     url: https://netbox.icf-essen.de/healthz
+    icon: https://github.com/netbox-community.png
   - name: Grafana
     url: https://grafana.icf-essen.de/healthz
+    icon: https://github.com/grafana.png
 
 status-website:
   cname: status.icf-essen.de
   name: ICF Essen – Dienststatus
+  logoUrl: https://icf.church/wp-content/themes/icf/assets/logo.svg
+  theme: dark            # Alternativen: dark, night, ocean
+  introTitle: "**Status der ICF-Dienste**"
+  introMessage: "Hier ist jederzeit zu sehen, ob die Dienste des ICF-Essen erreichbar sind. Bei Problemen hilft der [Helpdesk](https://helpdesk.icf-essen.de)."
+  navbar:
+    - title: Helpdesk
+      href: https://helpdesk.icf-essen.de
+
+i18n:
+  allSystemsOperational: Alle Dienste sind erreichbar
+  activeIncidents: Aktuelle Störungen
+  liveStatus: Aktueller Status
+  overallUptime: "Verfügbarkeit: $UPTIME"
+  overallUptimeTitle: Verfügbarkeit
+  averageResponseTime: "Durchschnittliche Antwortzeit: $TIMEms"
+  averageResponseTimeTitle: Durchschnittliche Antwortzeit
+  sevelDayResponseTime: Antwortzeit (7 Tage)
+  responseTimeMs: Antwortzeit (ms)
+  pastIncidents: Vergangene Störungen
+  incidentFixed: Behoben
+  incidentOngoing: Laufend
+  incidentOpenedAt: Begonnen
+  incidentClosedAt: Behoben
+  incidentBack: ← Zurück zur Übersicht
+  loading: Wird geladen …
+  footer: Statusseite der ICF Essen · betrieben mit [Upptime](https://upptime.js.org)
