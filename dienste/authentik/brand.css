@@ -1,0 +1,354 @@
+/*
+ * ICF Essen – Authentik Brand → Custom CSS
+ * Stand: 30.10.2026, authentik 2026.8.5 (Brand „ICF-Essen e.V. SSO“, auth.icf-essen.de)
+ * Einspielen: Admin → System → Brands → Brand bearbeiten → Custom CSS (kompletten Inhalt ersetzen)
+ * Voraussetzung: Brand-Attributes  settings: { theme: { base: dark } }
+ *
+ * Notfall (Oberfläche unbrauchbar, z. B. komplett weiß):
+ *   cd /opt/authentik && sudo docker compose exec server ak create_recovery_key 1 akadmin
+ *   → https://auth.icf-essen.de/recovery/use-token/…/ öffnen = Sitzung im Safe Mode ohne Custom CSS.
+ *   Der Link gilt nur einmal. Danach abmelden.
+ * Keine filter/opacity-Regeln auf :root/html/body – das macht die ganze Seite unsichtbar.
+ */
+
+/* ---------- 1. Farben ---------- */
+:root, :host {
+  /* Akzent Cyan */
+  --ak-accent: #22d3ee !important;
+  --pf-global--primary-color--100: #22d3ee !important;
+  --pf-global--primary-color--200: #06b6d4 !important;
+  --pf-global--primary-color--light-100: #67e8f9 !important;
+  --pf-global--active-color--100: #22d3ee !important;
+
+  /* Links */
+  --pf-global--link--Color: #22d3ee !important;
+  --pf-global--link--Color--hover: #67e8f9 !important;
+  --pf-global--link--Color--light: #22d3ee !important;
+  --pf-global--link--Color--light--hover: #67e8f9 !important;
+  --pf-global--link--Color--dark: #0891b2 !important;
+  --pf-global--link--Color--dark--hover: #0e7490 !important;
+
+  /* Info-Symbole */
+  --pf-global--info-color--100: #22d3ee !important;
+  --pf-global--info-color--200: #06b6d4 !important;
+
+  /* Blau-Palette */
+  --pf-global--palette--blue-100: #a5f3fc !important;
+  --pf-global--palette--blue-200: #67e8f9 !important;
+  --pf-global--palette--blue-300: #22d3ee !important;
+  --pf-global--palette--blue-400: #22d3ee !important;
+  --pf-global--palette--blue-500: #06b6d4 !important;
+  --pf-global--palette--blue-600: #0891b2 !important;
+  --pf-global--palette--blue-700: #0e7490 !important;
+
+  /* Primäre Buttons: Cyan mit dunkler, lesbarer Schrift */
+  --pf-c-button--m-primary--BackgroundColor: #22d3ee !important;
+  --pf-c-button--m-primary--Color: #04222a !important;
+  --pf-c-button--m-primary--hover--BackgroundColor: #67e8f9 !important;
+  --pf-c-button--m-primary--hover--Color: #04222a !important;
+  --pf-c-button--m-primary--focus--BackgroundColor: #67e8f9 !important;
+  --pf-c-button--m-primary--focus--Color: #04222a !important;
+  --pf-c-button--m-primary--active--BackgroundColor: #06b6d4 !important;
+  --pf-c-button--m-primary--active--Color: #04222a !important;
+  --pf-c-dropdown__toggle--m-primary--BackgroundColor: #22d3ee !important;
+  --pf-c-dropdown__toggle--m-primary--Color: #04222a !important;
+
+  /* Outline-Buttons */
+  --pf-c-button--m-secondary--Color: #22d3ee !important;
+  --pf-c-button--m-secondary--BorderColor: #22d3ee !important;
+  --pf-c-button--m-secondary--hover--Color: #67e8f9 !important;
+  --pf-c-button--m-secondary--hover--BorderColor: #67e8f9 !important;
+
+  /* Fehler und Warnungen */
+  --pf-global--danger-color--100: #ff4d2e !important;
+  --pf-global--danger-color--200: #e63c1f !important;
+  --pf-global--warning-color--100: #f7b731 !important;
+
+  --pf-global--BorderRadius--sm: 8px;
+  --pf-global--BorderRadius--lg: 16px;
+}
+
+/* Hintergrundbild der Benutzer-Oberfläche. */
+:root {
+  --icf-bg: url("https://design.icf-essen.de/hintergrund-desktop.jpg"), linear-gradient(135deg, #0b1220 0%, #0e4a6e 100%);
+}
+
+/* Dark Mode: neutrale Grautöne (Admin-Bereich) */
+:root[data-theme="dark"] {
+  --ak-dark-background: #121316;
+  --ak-dark-background-darker: #0b0c0e;
+  --ak-dark-background-light: #1c1d20;
+  --ak-dark-background-light-ish: #1c1d20;
+  --ak-dark-background-lighter: #26282c;
+}
+
+/* ---------- 2. Allgemeine Bausteine ---------- */
+
+/* Links ohne eigene Klasse (Tabellen) */
+a:not([class]) { color: #22d3ee; }
+a:not([class]):hover { color: #67e8f9; }
+
+/* Info-Symbole */
+.fa-info-circle, .pf-m-info .pf-c-icon, .pf-c-label.pf-m-blue .pf-c-label__icon {
+  color: #22d3ee !important;
+}
+
+/* Buttons */
+.pf-c-button { border-radius: 8px; }
+.pf-c-button.pf-m-primary,
+.pf-c-dropdown__toggle.pf-m-primary,
+.pf-c-dropdown__toggle.pf-m-primary .pf-c-dropdown__toggle-text,
+.pf-c-dropdown__toggle.pf-m-primary .pf-c-dropdown__toggle-icon,
+.pf-c-dropdown__toggle.pf-m-primary .pf-c-dropdown__toggle-button {
+  color: #04222a !important;
+  font-weight: 600;
+}
+
+/* "Löschen" in der Toolbar in Rot/Orange */
+.pf-c-toolbar .pf-c-button.pf-m-danger {
+  color: #ff4d2e !important;
+  background-color: transparent !important;
+}
+.pf-c-toolbar .pf-c-button.pf-m-danger:disabled,
+.pf-c-toolbar .pf-c-button.pf-m-danger.pf-m-disabled {
+  opacity: 0.6;
+}
+
+/* Kacheln und Titel */
+.pf-c-card { border-radius: 12px; }
+.pf-c-card__title { font-size: 1.05rem; }
+
+/* Tabellen-Karten abrunden */
+.pf-c-toolbar {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.pf-c-pagination.pf-m-bottom {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+
+/* ---------- 3. Anmeldung: Glas-Karte ---------- */
+
+.pf-c-login__main,
+ak-flow-executor::part(main) {
+  background: rgba(12, 16, 22, 0.55) !important;
+  backdrop-filter: blur(24px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Alle Schritte der Anmeldung (Stages) */
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) {
+  color: #fff;
+}
+
+/* Texte */
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) :is(h1, h2, p, label, .pf-c-form__label-text, .pf-c-title) {
+  color: #fff !important;
+}
+
+/* Eingabefelder */
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) .pf-c-form-control {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px !important;
+  color: #fff !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) .pf-c-form-control:focus {
+  border-color: #22d3ee !important;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.25) !important;
+}
+
+/* Haupt-Button: Cyan mit leichtem Leuchten */
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) .pf-c-button.pf-m-primary {
+  background: linear-gradient(135deg, #22d3ee, #06b6d4) !important;
+  color: #04222a !important;
+  border: none !important;
+  border-radius: 14px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.28) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) .pf-c-button.pf-m-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(34, 211, 238, 0.4) !important;
+}
+
+/* Zweit-Buttons und Links: Glas */
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) .pf-c-button.pf-m-secondary {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+}
+:host(:is(ak-stage-identification, ak-stage-password, ak-stage-prompt, ak-stage-consent,
+          ak-stage-user-login, ak-stage-authenticator-validate, ak-stage-authenticator-totp,
+          ak-stage-authenticator-webauthn, ak-stage-authenticator-static, ak-stage-email,
+          ak-stage-access-denied)) a {
+  color: #67e8f9;
+}
+
+
+/* ---------- 4. Benutzer-Oberfläche (Dashboard mit den Kacheln) ---------- */
+
+/* Authentik legt eine graue Schräge über den Hintergrund: durchsichtig machen */
+[part="background-wrapper"],
+[part="background-default-slant"],
+::part(background-wrapper),
+::part(background-default-slant) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Hintergrundbild */
+:host(:is(ak-interface-user, ak-interface-user-presentation)) .pf-c-page {
+  background-image: var(--icf-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* Flächen durchsichtig */
+:host(:is(ak-interface-user, ak-interface-user-presentation, ak-library-impl)) {
+  --pf-global--BackgroundColor--100: transparent !important;
+  --pf-c-page--BackgroundColor: transparent !important;
+  --pf-c-page__main-section--BackgroundColor: transparent !important;
+}
+:host(ak-library-impl) .pf-c-page,
+:host(ak-library-impl) .pf-c-page__main,
+:host(ak-library-impl) .pf-c-page__main-section,
+:host(ak-library-impl) .pf-c-drawer__content,
+:host(ak-library-impl) .pf-c-drawer__main,
+:host(ak-library-impl) .pf-l-gallery,
+:host(ak-interface-user) .pf-c-page__main {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Kopfzeile als Glas */
+:host(:is(ak-interface-user, ak-interface-user-presentation)) .pf-c-page__header {
+  background: rgba(8, 12, 18, 0.45) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Überschriften und Texte */
+:host(ak-library-impl) { color: #fff; }
+:host(ak-library-impl) :is(h1, h2, h3, .pf-c-title) { color: #fff !important; }
+
+/* App-Kacheln als Glas */
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: 20px !important;
+  transition: transform 0.2s ease, background 0.2s ease,
+              border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(34, 211, 238, 0.55) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(34, 211, 238, 0.18) !important;
+}
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable::before,
+:host(ak-library-impl) .pf-c-card.pf-m-hoverable::after {
+  display: none !important;
+}
+:host(ak-library-impl) .pf-c-card__title,
+:host(ak-library-impl) .pf-c-card__body {
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Suchfeld */
+:host(ak-library-impl) :is(input[type="text"], input[type="search"], .pf-c-form-control) {
+  background: transparent !important;
+  color: #fff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+}
+:host(ak-library-impl) :is(input[type="text"], input[type="search"]):focus {
+  border-bottom-color: #22d3ee !important;
+}
+
+/* Button "Admin-Oberfläche" */
+:host(:is(ak-interface-user, ak-interface-user-presentation)) a[href*="/if/admin/"],
+:host(:is(ak-interface-user, ak-interface-user-presentation)) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary {
+  border-radius: 50px !important;
+  border: 1px solid rgba(34, 211, 238, 0.5) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #fff !important;
+  padding: 8px 24px !important;
+  text-decoration: none !important;
+}
+:host(:is(ak-interface-user, ak-interface-user-presentation)) a[href*="/if/admin/"]:hover,
+:host(:is(ak-interface-user, ak-interface-user-presentation)) .pf-c-page__header-tools-item a.pf-c-button.pf-m-secondary:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: #22d3ee !important;
+}
+
+/* ---------- 5. Admin-Oberfläche: Hintergrundbild ---------- */
+
+/* Authentik hat bereits eine Hintergrund-Ebene hinter der Seite (body::before).
+   Die Anmeldeseite füllt sie über diese Variable – hier dasselbe für das Admin-Panel.
+   (Auf sehr kleinen Bildschirmen blendet Authentik die Ebene bewusst aus.) */
+body:has(ak-interface-admin) {
+  --ak-global--background-image: url("https://design.icf-essen.de/hintergrund-desktop.jpg");
+}
+
+/* Seitenflächen durchsichtig, damit das Bild zwischen den Inhalten sichtbar wird.
+   Tabellen, Karten und Werkzeugleisten behalten ihre dunkle Fläche (Lesbarkeit). */
+:host(ak-interface-admin) .pf-c-page {
+  --pf-c-page--BackgroundColor: transparent !important;
+  --pf-c-page__main-section--BackgroundColor: transparent !important;
+  --pf-c-page__sidebar--BackgroundColor: rgba(8, 20, 30, 0.5) !important;
+  background-color: transparent !important;
+}
+
+/* Seitenleiste als Glas */
+:host(ak-interface-admin) .pf-c-page__sidebar {
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Kopfleiste als Glas – gleiche Tönung wie die Seitenleiste */
+:host(ak-page-navbar) .main-content {
+  background-color: rgba(8, 20, 30, 0.5) !important;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
