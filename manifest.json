@@ -1,20 +1,12 @@
 {
-  "background_color": "#ffffff",
-  "theme_color": "#333333",
-  "name": "Upptime",
-  "short_name": "Upptime",
+  "background_color": "#0f4159",
+  "theme_color": "#0f4159",
+  "name": "ICF Essen – Dienststatus",
+  "short_name": "ICF Status",
   "display": "minimal-ui",
   "start_url": "/",
   "icons": [
-    {
-      "src": "logo-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "logo-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "logo-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "logo-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
