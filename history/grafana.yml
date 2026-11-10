@@ -1,7 +1,7 @@
 url: https://grafana.icf-essen.de/healthz
 status: up
 code: 200
-responseTime: 530
-lastUpdated: 2026-11-09T02:31:16.028Z
+responseTime: 460
+lastUpdated: 2026-11-10T04:33:31.411Z
 startTime: 2026-10-30T11:06:50.631Z
 generator: Upptime <https://github.com/upptime/upptime>
